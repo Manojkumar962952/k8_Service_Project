@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: flaskapp
-        image: flaskapp:latest  # Use the local image
+        image: manoj9629/flask-app:latest  # Use the local image
         ports:
         - containerPort: 8000
