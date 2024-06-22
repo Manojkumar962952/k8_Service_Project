@@ -1,8 +1,17 @@
-FROM ubuntu:latest
-RUN apt-get update -y
-RUN apt-get install -y python-pip python-dev build-essential
-COPY . /app
+# Use the official Python image from the Docker Hub
+FROM python:3.9-slim
+
+# Set the working directory in the container
 WORKDIR /app
-RUN pip install -r /app/requirements.txt
-ENTRYPOINT ["python"]
-CMD ["app.py","runserver", "0.0.0.0:8000"]
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose port 8000 to the outside world
+EXPOSE 8000
+
+# Run app.py when the container launches
+CMD ["python", "app.py"]
